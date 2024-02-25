@@ -9,4 +9,5 @@ gem "nokogiri"
 group :development, :test do
   gem "rake"
   gem "test-unit"
+  gem "webmock"
 end
