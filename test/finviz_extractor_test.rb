@@ -2,6 +2,8 @@ require "finviz_extractor"
 require "nokogiri"
 
 class FinvizExtractorTest < Test::Unit::TestCase
+  include FixtureReader
+
   data({
     "NVIDIA"         => ["NVDA", "NVIDIA Corp"],
     "GlobalNetLease" => ["GNL",  "Global Net Lease Inc"],
@@ -75,10 +77,7 @@ class FinvizExtractorTest < Test::Unit::TestCase
   end
 
   private def load_finviz_html(ticker)
-    test_dir = Pathname(__dir__).expand_path
-    fixtures_dir = test_dir + "fixtures"
-    file_name = fixtures_dir + "#{ticker}.html"
-    html = File.read(file_name.to_s)
+    html = read_fixture("#{ticker}.html")
     Nokogiri::HTML5(html)
   end
 end
